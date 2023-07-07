@@ -20,7 +20,12 @@ model = model.eval()
 
 def chat(message, history):
     print(history)
-    return "", model.chat(tokenizer, message, history)[1]
+    with torch.no_grad():
+        try:
+            msg, history = model.chat(tokenizer, message, history)
+        except:
+            return "", history
+        return "", history
 
 class OpenGVLab(gr.themes.base.Base):
     def __init__(
