@@ -9,8 +9,8 @@ import os
 from threading import Thread
 
 print(f"Starting to load the model to memory")
-tokenizer = AutoTokenizer.from_pretrained("internlm/internlm-chat-7b",torch_dtype=torch.float16, trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained("internlm/internlm-chat-7b", trust_remote_code=True)
+tokenizer = AutoTokenizer.from_pretrained("internlm/internlm-chat-7b",trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained("internlm/internlm-chat-7b", trust_remote_code=True, torch_dtype=torch.float16)
 
 if torch.cuda.is_available():
     model = model.cuda()
@@ -73,7 +73,7 @@ with gr.Blocks(theme=gvlabtheme) as demo:
     chatbot = gr.Chatbot().style(height=500)
     with gr.Row():
         with gr.Column():
-            msg = gr.Textbox(label="Chat Message Box", placeholder="Chat Message Box",
+            msg = gr.Textbox(label="Chat Message Box", placeholder="Hi~ Introduce yourself!",
                              show_label=False).style(container=False)
         with gr.Column():
             with gr.Row():
