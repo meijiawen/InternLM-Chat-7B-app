@@ -22,7 +22,7 @@ def chat(message, history):
     print(history)
     with torch.no_grad():
         try:
-            msg, history = model.chat(tokenizer, message, history)
+            msg, history = model.chat(tokenizer, message, [])
         except:
             return "", history
         return "", history
@@ -74,7 +74,7 @@ gvlabtheme = OpenGVLab(primary_hue=colors.blue,
 with gr.Blocks(theme=gvlabtheme) as demo:
     # history = gr.State([])
     gr.Markdown('<h1 align="center"><a href="https://github.com/InternLM/InternLM"><img src="https://raw.githubusercontent.com/InternLM/InternLM/main/doc/imgs/logo.svg" alt="InternLM-Chat" border="0" style="margin: 0 auto" /></a> </h1>')
-    gr.HTML('''''')
+    gr.HTML('''Due to VRAM limitations, the examples of Gradio do not include context.''')
     chatbot = gr.Chatbot().style(height=500)
     with gr.Row():
         with gr.Column():
