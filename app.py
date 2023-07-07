@@ -10,7 +10,10 @@ from threading import Thread
 
 print(f"Starting to load the model to memory")
 tokenizer = AutoTokenizer.from_pretrained("internlm/internlm-chat-7b", trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained("internlm/internlm-chat-7b", trust_remote_code=True).cuda()
+model = AutoModelForCausalLM.from_pretrained("internlm/internlm-chat-7b", trust_remote_code=True)
+
+if torch.cuda.is_avaliable():
+    model = model.cuda()
 print(f"Sucessfully loaded the model to the memory")
 
 model = model.eval()
