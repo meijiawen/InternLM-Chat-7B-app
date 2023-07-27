@@ -22,24 +22,14 @@ print(f"Sucessfully loaded the model to the memory")
 model = model.eval()
 
 
-def chat(message, chatbot, history):
-    # print(history)
+def chat(message, history):
+    print(history)
     with torch.no_grad():
         try:
-            msg, history = model.chat(tokenizer, message, history)
+            msg, history = model.chat(tokenizer, message, [])
         except:
-            return chatbot, history
-        return chatbot, history
-
-
-# def chat(message, history):
-#     print(history)
-#     with torch.no_grad():
-#         try:
-#             msg, history = model.chat(tokenizer, message, [])
-#         except:
-#             return "", history
-#         return "", history
+            return "", history
+        return "", history
 
 
 class OpenGVLab(gr.themes.base.Base):
@@ -111,21 +101,13 @@ with gr.Blocks(theme=gvlabtheme) as demo:
     #    start_message, label="System Message", interactive=False, visible=False)
 
     submit_event = msg.submit(fn=chat,
-                              inputs=[msg, chatbot, history],
-                              outputs=[chatbot, history],
+                              inputs=[msg, chatbot],
+                              outputs=[msg, chatbot],
                               queue=True)
     submit_click_event = submit.click(fn=chat,
-                                      inputs=[msg, chatbot, history],
-                                      outputs=[chatbot, history],
+                                      inputs=[msg, chatbot],
+                                      outputs=[msg, chatbot],
                                       queue=True)
-    # submit_event = msg.submit(fn=chat,
-    #                           inputs=[msg, chatbot],
-    #                           outputs=[msg, chatbot],
-    #                           queue=True)
-    # submit_click_event = submit.click(fn=chat,
-    #                                   inputs=[msg, chatbot],
-    #                                   outputs=[msg, chatbot],
-    #                                   queue=True)
 
     stop.click(fn=None,
                inputs=None,
