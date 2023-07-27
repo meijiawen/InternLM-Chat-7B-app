@@ -22,14 +22,14 @@ print(f"Sucessfully loaded the model to the memory")
 model = model.eval()
 
 
-def chat(message, chatbot, history, past_key_values):
+def chat(message, chatbot, history):
     # print(history)
     with torch.no_grad():
         try:
-            msg, chatbot = model.chat(tokenizer, message, history)
+            msg, history = model.chat(tokenizer, message, history)
         except:
-            return chatbot, history, past_key_values
-        return chatbot, history, past_key_values
+            return chatbot, history
+        return chatbot, history
 
 
 # def chat(message, history):
@@ -96,7 +96,7 @@ with gr.Blocks(theme=gvlabtheme) as demo:
     )
     history = gr.State([])
     past_key_values = gr.State(None)
-    chatbot = gr.Chatbot().style(height=500)
+    chatbot = gr.Chatbot().style(height=600)
     with gr.Row():
         with gr.Column():
             msg = gr.Textbox(label="Chat Message Box",
@@ -111,15 +111,14 @@ with gr.Blocks(theme=gvlabtheme) as demo:
     #    start_message, label="System Message", interactive=False, visible=False)
 
     submit_event = msg.submit(fn=chat,
-                              inputs=[msg, chatbot, history, past_key_values],
-                              outputs=[chatbot, history, past_key_values],
+                              inputs=[msg, chatbot, history],
+                              outputs=[chatbot, history],
                               queue=True)
-    submit_click_event = submit.click(
-        fn=chat,
-        inputs=[msg, chatbot, history, past_key_values],
-        outputs=[chatbot, history, past_key_values],
-        queue=True)
-    #     submit_event = msg.submit(fn=chat,
+    submit_click_event = submit.click(fn=chat,
+                                      inputs=[msg, chatbot, history],
+                                      outputs=[chatbot, history],
+                                      queue=True)
+    # submit_event = msg.submit(fn=chat,
     #                           inputs=[msg, chatbot],
     #                           outputs=[msg, chatbot],
     #                           queue=True)
