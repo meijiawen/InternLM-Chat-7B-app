@@ -12,4 +12,4 @@ license: apache-2.0
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
 
-[![Open in OpenXLab](https://cdn-static.openxlab.org.cn/header/openxlab_models.svg)](https://staging.openxlab.org.cn/models/detail/meijiawen1/inference-object-detection)
+[![Open in OpenXLab](https://cdn-static.openxlab.org.cn/header/openxlab_models.svg)](https://staging.openxlab.org.cn/models/detail/panhaoyu/asd)
