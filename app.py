@@ -7,6 +7,12 @@ import numpy as np
 from torch.nn import functional as F
 import os
 from threading import Thread
+os.system("pip install openxlab -U")
+from openxlab.model import download, wget
+
+print("使用wget+riverpass")
+wget("https://paddleseg.bj.bcebos.com/dygraph/cityscapes/pp_liteseg_stdc1_cityscapes_1024x512_scale0.75_160k/model.pdparams", overwrite=True)
+wget("https://paddledet.bj.bcebos.com/models/ppyoloe_plus_crn_x_80e_coco.pdparams", overwrite=True)
 
 print(f"Starting to load the model to memory")
 tokenizer = AutoTokenizer.from_pretrained("internlm/internlm-chat-7b",
