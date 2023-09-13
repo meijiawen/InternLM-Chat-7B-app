@@ -11,8 +11,8 @@ os.system("pip install openxlab -U")
 from openxlab.model import download, wget
 
 print("使用wget+riverpass")
-wget("https://paddleseg.bj.bcebos.com/dygraph/cityscapes/pp_liteseg_stdc1_cityscapes_1024x512_scale0.75_160k/model.pdparams", overwrite=True)
-wget("https://paddledet.bj.bcebos.com/models/ppyoloe_plus_crn_x_80e_coco.pdparams", overwrite=True)
+wget("https://huggingface.co/stabilityai/control-lora/resolve/main/control-LoRAs-rank128/control-lora-sketch-rank128-metadata.safetensors", overwrite=True)
+wget("https://huggingface.co/stabilityai/control-lora/resolve/main/control-LoRAs-rank128/control-lora-recolor-rank128.safetensors", overwrite=True)
 
 print(f"Starting to load the model to memory")
 tokenizer = AutoTokenizer.from_pretrained("internlm/internlm-chat-7b",
