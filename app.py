@@ -11,7 +11,7 @@ os.system("pip install openxlab -U")
 from openxlab.model import download, wget
 
 print("使用wget+riverpass")
-wget("https://paddledet.bj.bcebos.com/models/ppyoloe_plus_crn_x_80e_coco.pdparams", overwrite=True)
+wget("https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/inference/PPLCNetV2_base_infer.tar", overwrite=True)
 wget("https://huggingface.co/stabilityai/control-lora/resolve/main/control-LoRAs-rank128/control-lora-sketch-rank128-metadata.safetensors", overwrite=True)
 wget("https://huggingface.co/stabilityai/control-lora/resolve/main/control-LoRAs-rank128/control-lora-recolor-rank128.safetensors", overwrite=True)
 
